@@ -4,6 +4,7 @@ run-name: ${{github.actor }} is testing out github actions
 on: push
 
 jobs:
-  runs-on : [self-hosted, build]
-  step :
-    run : echo "Welcome to my first workflows test with {{ github.event_name }}"
+  build :
+    runs-on : [ubuntu-latest]
+    steps :
+      - run : echo "Welcome to my first workflows test with {{ github.event_name }}"
