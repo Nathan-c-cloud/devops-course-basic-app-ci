@@ -1,5 +1,4 @@
 name : My workflow
-
 run-name: ${{github.actor }} is testing out github actions
 on: push
 
@@ -7,4 +6,7 @@ jobs:
   build :
     runs-on : [ubuntu-latest]
     steps :
-      - run : echo "Welcome to my first workflows test with {{ github.event_name }}"
+      - name: Set up python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
