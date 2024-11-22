@@ -1,12 +1,24 @@
-name : My workflow
+name: My workflow
 run-name: ${{github.actor }} is testing out github actions
 on: push
 
 jobs:
-  build :
-    runs-on : [ubuntu-latest]
-    steps :
+  build:
+    runs-on: [ ubuntu-latest ]
+    steps:
       - name: Set up python 3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
+
+      - name: Set up flake 8
+        uses: py-actions/flake8@v2
+        with:
+          ignore: "F401"
+          exclude: "src/ignoreme.py"
+          max-line-length: "100"
+          path: "src"
+          plugins: "flake8-bugbear==22.1.11 flake8-black"
+      - name: Tests with nose
+        run : | 
+          pip install nose nosetests
